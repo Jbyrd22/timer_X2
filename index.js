@@ -1,29 +1,15 @@
-class Timer {
-	constructor(durationInput, startButton, pauseButton) {
-		this.durationInput = durationInput;
-		this.startButton = startButton;
-		this.pauseButton = pauseButton;
-
-		this.startButton.addEventListener('click', this.start);
-		this.pauseButton.addEventListener('click', this.pause);
-	}
-
-	start = () => {
-		this.tick();
-		this.intervalID = setInterval(this.tick, 1000);
-	};
-
-	pause = () => {
-		clearInterval(this.intervalID);
-	};
-
-	tick = () => {
-		console.log('tick');
-	};
-}
-
 const durationInput = document.querySelector('#duration');
 const startButton = document.querySelector('#start');
 const pauseButton = document.querySelector('#pause');
 
-const timer = new Timer(durationInput, startButton, pauseButton);
+const timer = new Timer(durationInput, startButton, pauseButton, {
+	onStart() {
+		console.log('timer has started!!');
+	},
+	onTick() {
+		console.log('timer just ticked down.');
+	},
+	onComplete() {
+		console.log('timer just completed!');
+	}
+});
